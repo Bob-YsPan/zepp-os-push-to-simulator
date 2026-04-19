@@ -7,7 +7,7 @@ It is a way to test the watchface if you do not have a watch and want to use the
 
 ![capture8](./cap8.png)
 
-## How to use that?
+## Main upload script: push.js
 
 1. Make sure the `@zeppos/zeus-cli` is installed, you can install by [this official guide](https://docs.zepp.com/docs/guides/quick-start/environment/).
 2. Open the terminal, switch to the root folder of this repo, and link to the library by the command below:
@@ -53,7 +53,7 @@ It is a way to test the watchface if you do not have a watch and want to use the
 
 ## Developer QR File download tool: downloader.js
 
-*  **Need to link the CLI first!, Looks the `How to use that?` part**
+*  **Need to link the CLI first!, Looks the `Main upload script: push.js` part**
 *  Usage: 
    ```
    node.exe .\downloader.js "zpkd1://<URL scanned by the QR>"
@@ -85,7 +85,7 @@ It is a way to test the watchface if you do not have a watch and want to use the
    node .\push_qr.js <Your QR Code Image Location>
    ```
 *  It will downloads the zip package uses downloader.js, and  
-   **When the Notepad opens up, you need add the device source and converts image by yourself(see the `How to use that?` part)**  
+   **When the Notepad opens up, you need add the device source and converts image by yourself(see the `Main upload script: push.js` part)**  
    (You can changes the editor by editing the `push_qr.js`)
 *  When closes the notepad(editor), the process will continue and pushes the modified watchface into the simulator!
 *  Example output:
