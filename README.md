@@ -24,7 +24,7 @@ It is a way to test the watchface if you do not have a watch and want to use the
    ![capture2](./cap2.png)
 6. Check your app.json file using the HEX editor tools like [HXD](https://mh-nexus.de/en/hxd/). Make sure there are no 3 extra bytes at the start of the JSON file. If it is, just delete it (Or it will cause an error when the simulator parses the JSON file.)
    ![capture4](./cap4.png)
-   > :warning: **If you are ready to test most of the watchfaces from the amazfitwatchfaces.com, the JSON file will have these 3 extra bytes at the file start (Maybe they are packed by the SashaCX75's editor).**
+   > :warning: **If you are ready to test most of the watchfaces from the amazfitwatchfaces.com, the JSON file will have these 3 extra bytes at the file start.**
 7. Open the `app.json` by the text editor, make sure the device source is correct (You can find it out at [official developer site](https://docs.zepp.com/docs/reference/related-resources/device-list/))
    ![capture6](./cap6.png)
 8. Repack all the content in the device folder back to the `device.zip`, and pack `device.zip` and `app-side.zip` back to the zip file. No need to rename it back to the `.zpk` extension.
