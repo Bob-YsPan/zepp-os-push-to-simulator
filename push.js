@@ -10,21 +10,13 @@ const { config, Simulator } = require(`${utilsDistPath}/index`);
 const { getDeviceInfoFromAppJson } = require(`${utilsDistPath}/tools/index`);
 const getDeviceConf = config.getDeviceConf;
 
-async function run() {
-    const zpkPath = process.argv[2]; 
-    const buildAppJsonPath = process.argv[3]; 
-    
-    if (!zpkPath || !buildAppJsonPath) {
-        console.error("❌ Error: Insufficient parameters");
-        console.error("Usage: node push.js <zpk path> <compiled app.json path>");
-        process.exit(1);
-    }
+async function run(zpkfile, jsonfile) {
 
     const url = "http://127.0.0.1:7650"; // Simulator default listening address
     
     try {
         // --- Read and process JSON ---
-        const fullJsonPath = path.resolve(buildAppJsonPath);
+        const fullJsonPath = path.resolve(jsonfile);
         if (!fs.existsSync(fullJsonPath)) throw new Error(`JSON file not found: ${fullJsonPath}`);
 
         const rawData = fs.readFileSync(fullJsonPath, 'utf8');
@@ -50,7 +42,7 @@ async function run() {
         const targetDeviceInternalName = deviceInternalCodeName[primaryDeviceSource];
 
         // --- Preparing ZPK ---
-        const fullZpkPath = path.resolve(zpkPath);
+        const fullZpkPath = path.resolve(zpkfile);
         if (!fs.existsSync(fullZpkPath)) throw new Error(`ZPK file not found: ${fullZpkPath}`);
         const zpkBuffer = fs.readFileSync(fullZpkPath);
 
@@ -79,4 +71,17 @@ async function run() {
     }
 }
 
-run();
+module.exports = { run };
+
+if (require.main === module) {
+    const zpkPath = process.argv[2]; 
+    const buildAppJsonPath = process.argv[3]; 
+
+    if (!zpkPath || !buildAppJsonPath) {
+        console.error("❌ Error: Insufficient parameters");
+        console.error("Usage: node push.js <zpk path> <compiled app.json path>");
+        process.exit(1);
+    }
+
+    run(buildAppJsonPath, zpkPath);
+}

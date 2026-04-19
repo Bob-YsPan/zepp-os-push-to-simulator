@@ -53,6 +53,7 @@ It is a way to test the watchface if you do not have a watch and want to use the
 
 ## Developer QR File download tool: downloader.js
 
+*  **Need to link the CLI first!, Looks the `How to use that?` part**
 *  Usage: 
    ```
    node.exe .\downloader.js "zpkd1://<URL scanned by the QR>"
@@ -68,3 +69,45 @@ It is a way to test the watchface if you do not have a watch and want to use the
 *  The QR version and the direct download version watchface hosted at [amazfitwatchface.com](https://amazfitwatchfaces.com/) are different. The QR version has the `app-side.zip` in the packed zip file, and the structure is followed the zpk's, that easier to push into the simulator ~~(Or you need to pack a copy of the app.json into the app-side.zip to make the watchface work on the simulator)~~
    > :information_source: **You can upload your watchface as the private watchface, and wait amazfitwatchface.com generates the QR Code, and you can download the zpk format by this QR code download method and pushes to the simulator to see the preview!**
 
+## Helper script: push_qr.js
+
+*  This script need extra modules, install it by:
+   ```
+   npm install jimp jsqr adm-zip
+   ```
+   And re-link the CLI:
+   ```
+   npm link @zeppos/zeus-cli
+   ```
+*  Make sure you already creates the `upload` folder at the root folder of the repo
+*  Usage: 
+   ```
+   node .\push_qr.js <Your QR Code Image Location>
+   ```
+*  It will downloads the zip package uses downloader.js, and  
+   **When the Notepad opens up, you need add the device source and converts image by yourself(see the `How to use that?` part)**  
+   (You can changes the editor by editing the `push_qr.js`)
+*  When closes the notepad(editor), the process will continue and pushes the modified watchface into the simulator!
+*  Example output:
+   ```
+   > node .\push_qr.js '.\upload\getqr (2).png'
+   🔍 Reading QR Code: .\upload\getqr (2).png
+   🔗 Got URL: https://amazfitwatchfaces.com/dl/active/zip/2081/casio_dw6000_v2-684532-522247ccb5.zip?zpk=ef150f7383&comp=Active_2_Square
+   Token preview: sWCoABsPN0-J065Y_9wy2f4oc7dmEm...
+   Ready to download: https://amazfitwatchfaces.com/dl/active/zip/2081/casio_dw6000_v2-684532-522247ccb5.zip?zpk=ef150f7383&comp=Active_2_Square
+   ✅ File fully written to: C:\Users\s9611\zepp-projects\zepp-os-push-to-simulator\upload\casio_dw6000_v2-684532-522247ccb5.zip
+   📦 Extracted to: C:\Users\s9611\zepp-projects\zepp-os-push-to-simulator\upload\casio_dw6000_v2-684532-522247ccb5
+   🧹 Clean the app.json...
+   📝 Please editing the device source and converts the image, process will continue when close the notepad...
+   🏗️ Repacking...
+   🚀 Pushing to simulator...
+   [ℹ] connecting to simulator on http://127.0.0.1:7650 ...
+   =========================================
+   🚀 Preparing to push to the simulator
+   📦 Project: Casio DW6000_v2
+   🆔 AppID: 3873975
+   📱 Device: undefined (Source: 9830656)
+   =========================================
+   ✅ Upload successful! Please check the simulator.
+   [✔] simulator connected
+   ```

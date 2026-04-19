@@ -17,7 +17,7 @@ function generateRandomToken(targetLength = 250) {
         // .substring(0, targetLength); // cut to like mine's token (Not need on Amazfit Watchface site)
 }
 
-async function downloadFile(targetUrl) {
+async function downloadFile(targetUrl, savePath) {
     // Token generator
     fakeToken = generateRandomToken(255);
 
@@ -45,13 +45,23 @@ async function downloadFile(targetUrl) {
             headers: headers
         });
 
-        const fileName = path.basename(new URL(targetUrl).pathname) || 'download_file.bin';
-        const writer = fs.createWriteStream(fileName);
+
+        const finalPath = savePath || (path.basename(new URL(targetUrl).pathname) || 'download_file.bin');
+        const writer = fs.createWriteStream(finalPath);
 
         response.data.pipe(writer);
 
-        writer.on('finish', () => console.log(`\nDownload Finished: ${fileName}`));
-        writer.on('error', (err) => console.error('Write Failed:', err));
+        // Stuck the process
+        return new Promise((resolve, reject) => {
+        writer.on('finish', () => {
+            console.log(`✅ File fully written to: ${savePath}`);
+            resolve(savePath);
+        });
+        writer.on('error', (err) => {
+            console.error('Write Failed:', err);
+            reject(err);
+        });
+    });
 
     } catch (error) {
         if (error.response) {
@@ -62,9 +72,13 @@ async function downloadFile(targetUrl) {
     }
 }
 
-const url = process.argv[2];
-if (url) {
-    downloadFile(url.replace("zpkd1://", "https://"));
-} else {
-    console.log('Please provides the URL.');
+module.exports = { downloadFile };
+
+if (require.main === module) {
+    const url = process.argv[2];
+    if (url) {
+        downloadFile(url.replace("zpkd1://", "https://"));
+    } else {
+        console.log('Please provides the URL.');
+    }
 }
