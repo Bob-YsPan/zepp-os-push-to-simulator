@@ -1,7 +1,7 @@
 # zepp-os-push-to-simulator
 Upload the zpk watchface/apps to the simulator by directly calling the function in the development CLI.
 
-It is a way to test the watchface if you do not have a watch and want to use the powerful watchface edit tools like [SashaCX75's editor](https://amazfitwatchfaces.com/forum/memberlist.php?mode=viewprofile&u=113690)!
+It is a way to test the watchface if you do not have a watch and want to use the powerful watchface edit tools like [SashaCX75's editor](https://amazfitwatchfaces.com/forum/viewtopic.php?t=2743)!
 
 ![capture7](./cap7.png)
 
