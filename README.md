@@ -24,7 +24,7 @@ Upload the zpk to the simulator by directly calling the function in the developm
 9. Open the simulator program, launch the device's simulator you want.
 10. Run the js script using this command:
     ```
-    node ./push.js ./upload/<unzipped folder>/<repacked_zip>.zip ./upload/ <unzipped folder>/device/app.json
+    node ./push.js ./upload/<unzipped folder>/<repacked_zip>.zip ./upload/<unzipped folder>/device/app.json
     ```
     The output like this
     ```
@@ -39,7 +39,7 @@ Upload the zpk to the simulator by directly calling the function in the developm
     [✔] simulator connected
     ```
 11. You should see the app is in the simulator app's list, and the simulated device opens the app automatically.  
-    (Example watchface: [Marc F18 Golf FR V1](https://amazfitwatchfaces.com/ active/view/1737) made by [markillers](https://amazfitwatchfaces.com/ucp/ 871122))
+    (Example watchface: [Marc F18 Golf FR V1](https://amazfitwatchfaces.com/active/view/1737) made by [markillers](https://amazfitwatchfaces.com/ucp/871122))
     ![capture1](./cap1.png)
 9. You can now testing the function of your app/watchface !
 
