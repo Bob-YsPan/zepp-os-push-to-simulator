@@ -8,39 +8,39 @@ Upload the zpk to the simulator by directly calling the function in the developm
    ```
    npm link @zeppos/zeus-cli
    ```
-4. Create the `upload` folder at the same location, put the zpks you want to upload.
+3. Create the `upload` folder at the same location, put the zpks you want to upload.
 4. Extract the zpk, and the device.zip in the extracted zpk
    ![capture3](./cap3.png)
-3. Download the image converter made by [SashaCX75](https://amazfitwatchfaces.com/forum/memberlist.php?mode=viewprofile&u=113690) ( [Dropbox](https://www.dropbox.com/s/ugmfqg0xdv8qbcd/ImageToZeppOS.zip?dl=0) )  
+5. Download the image converter made by [SashaCX75](https://amazfitwatchfaces.com/forum/memberlist.php?mode=viewprofile&u=113690) ( [Dropbox](https://www.dropbox.com/s/ugmfqg0xdv8qbcd/ImageToZeppOS.zip?dl=0) )  
    Use `Batch converting images to PNG` tool to convert back all of the images to PNG.
    ![capture2](./cap2.png)
-4. Check your app.json file using the HEX editor tools like [HXD](https://mh-nexus.de/en/hxd/). Make sure there are no 3 extra bytes at the start of the JSON file. If it is, just delete it (Or it will cause an error when the simulator parses the JSON file.)
+6. Check your app.json file using the HEX editor tools like [HXD](https://mh-nexus.de/en/hxd/). Make sure there are no 3 extra bytes at the start of the JSON file. If it is, just delete it (Or it will cause an error when the simulator parses the JSON file.)
    ![capture4](./cap4.png)
    > :warning: **If you are ready to test most of the watchfaces from the amazfitwatchfaces.com, the JSON file will have these 3 extra bytes at the file start (Maybe they are packed by the SashaCX75's editor).**
-6. Open the `app.json` by the text editor, make sure the device source is correct (You can find it out at [official developer site](https://docs.zepp.com/docs/reference/related-resources/device-list/))
+7. Open the `app.json` by the text editor, make sure the device source is correct (You can find it out at [official developer site](https://docs.zepp.com/docs/reference/related-resources/device-list/))
    ![capture6](./cap6.png)
-5. Repack all the content in the device folder back to the `device.zip`, and pack `device.zip` and `app-side.zip` back to the zip file. No need to rename it back to the `.zpk` extension.
+8. Repack all the content in the device folder back to the `device.zip`, and pack `device.zip` and `app-side.zip` back to the zip file. No need to rename it back to the `.zpk` extension.
    ![capture5](./cap5.png)
-5. Open the simulator program, launch the device's simulator you want.
-6. Run the js script using this command:
-   ```
-   node ./push.js ./upload/<unzipped folder>/<repacked_zip>.zip ./upload/<unzipped folder>/device/app.json
-   ```
-   The output like this
-   ```
-   [ℹ] connecting to simulator on http://127.0.0.1:7650 ...
-   =========================================
-   🚀 Preparing to push to the simulator
-   📦 Project: Lele_Garmin_F18_Gold
-   🆔 AppID: 43892
-   📱 Device: genevaw (Source: 10813697)
-   =========================================
-   ✅ Upload successful! Please check the simulator.
-   [✔] simulator connected
-   ```
-8. You should see the app is in the simulator app's list, and the simulated device opens the app automatically.  
-   (Example watchface: [Marc F18 Golf FR V1](https://amazfitwatchfaces.com/active/view/1737) made by [markillers](https://amazfitwatchfaces.com/ucp/871122))
-   ![capture1](./cap1.png)
+9. Open the simulator program, launch the device's simulator you want.
+10. Run the js script using this command:
+    ```
+    node ./push.js ./upload/<unzipped folder>/<repacked_zip>.zip ./upload/ <unzipped folder>/device/app.json
+    ```
+    The output like this
+    ```
+    [ℹ] connecting to simulator on http://127.0.0.1:7650 ...
+    =========================================
+    🚀 Preparing to push to the simulator
+    📦 Project: Lele_Garmin_F18_Gold
+    🆔 AppID: 43892
+    📱 Device: genevaw (Source: 10813697)
+    =========================================
+    ✅ Upload successful! Please check the simulator.
+    [✔] simulator connected
+    ```
+11. You should see the app is in the simulator app's list, and the simulated device opens the app automatically.  
+    (Example watchface: [Marc F18 Golf FR V1](https://amazfitwatchfaces.com/ active/view/1737) made by [markillers](https://amazfitwatchfaces.com/ucp/ 871122))
+    ![capture1](./cap1.png)
 9. You can now testing the function of your app/watchface !
 
 ## Developer QR File download tool: downloader.js
