@@ -66,5 +66,5 @@ It is a way to test the watchface if you do not have a watch and want to use the
    ```
    And uncomment the `faketoken = ""` line that filled the Real Token.
 *  The QR version and the direct download version watchface hosted at [amazfitwatchface.com](https://amazfitwatchfaces.com/) are different. The QR version has the `app-side.zip` in the packed zip file, and the structure is followed the zpk's, that easier to push into the simulator ~~(Or you need to pack a copy of the app.json into the app-side.zip to make the watchface work on the simulator)~~
-   > :info: **You can upload your watchface as the private watchface, and wait amazfitwatchface.com generates the QR Code, and you can download the zpk format by this QR code download method and pushes to the simulator to see the preview!**
+   > :information_source: **You can upload your watchface as the private watchface, and wait amazfitwatchface.com generates the QR Code, and you can download the zpk format by this QR code download method and pushes to the simulator to see the preview!**
 
