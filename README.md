@@ -59,4 +59,4 @@ Upload the zpk to the simulator by directly calling the function in the developm
    // fakeToken = "";  << Here
    ```
    And uncomment the `faketoken = ""` line that filled the Real Token.
-*  The QR version and the direct download version watchface hosted at [amazfitwatchface.com](https://amazfitwatchfaces.com/) are different. The QR version has the `app-side.zip` in the packed zip file, that easier to push into the simulator (Or you need to pack a copy of the app.json into the app-side.zip to make the watchface work on the simulator)
+*  The QR version and the direct download version watchface hosted at [amazfitwatchface.com](https://amazfitwatchfaces.com/) are different. The QR version has the `app-side.zip` in the packed zip file, and the structure is followed the zpk's, that easier to push into the simulator ~~(Or you need to pack a copy of the app.json into the app-side.zip to make the watchface work on the simulator)~~
