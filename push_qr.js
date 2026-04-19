@@ -23,19 +23,28 @@ async function main() {
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
 
     try {
-        // 1. Reading QR Code
-        console.log(`🔍 Reading QR Code: ${qrImagePath}`);
-        const image = await Jimp.read(qrImagePath);
-        const qrCode = jsQR(image.bitmap.data, image.bitmap.width, image.bitmap.height);
-        if (!qrCode) throw new Error("Cannot read the QR Code");
-        
-        let targetUrl = qrCode.data.replace("zpkd1://", "https://");
-        console.log(`🔗 Got URL: ${targetUrl}`);
+        ext = path.extname(qrImagePath)
+        if (ext === ".zip" || ext === ".zpk") {
+            zpkPath = qrImagePath;
+            fileName = path.basename(qrImagePath, ext)
+            console.log("ℹ️ You are provides a zip/zpk file, jumps to the extract step");
+        }
+        else {
+            // 1. Reading QR Code
+            console.log(`🔍 Reading QR Code: ${qrImagePath}`);
+            const image = await Jimp.read(qrImagePath);
+            const qrCode = jsQR(image.bitmap.data, image.bitmap.width, image.bitmap.height);
+            if (!qrCode) throw new Error("Cannot read the QR Code");
+            
+            let targetUrl = qrCode.data.replace("zpkd1://", "https://");
+            console.log(`🔗 Got URL: ${targetUrl}`);
 
-        // 2. Download file
-        const fileName = path.basename(new URL(targetUrl).pathname) || 'download.zpk';
-        const zpkPath = path.join(tempDir, fileName);
-        await downloadFile(targetUrl, zpkPath);
+            // 2. Download file
+            const fileName = path.basename(new URL(targetUrl).pathname) || 'download.zpk';
+            const zpkPath = path.join(tempDir, fileName);
+            await downloadFile(targetUrl, zpkPath);
+        }
+
 
         // 3. Extract the ZPK
         const extractDir = path.join(tempDir, fileName.replace(/\.[^/.]+$/, ""));

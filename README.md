@@ -82,10 +82,10 @@ It is a way to test the watchface if you do not have a watch and want to use the
 *  Make sure you already creates the `upload` folder at the root folder of the repo
 *  Usage: 
    ```
-   node .\push_qr.js <Your QR Code Image Location>
+   node .\push_qr.js <Your QR Code Image / zip / zpk Location>
    ```
-*  It will downloads the zip package uses downloader.js, and  
-   **When the Notepad opens up, you need add the device source and converts image by yourself(see the `Main upload script: push.js` part)**  
+*  It will downloads the zip package uses downloader.js. If you provides a downloaded zip/zpk file, it will jumps to the extract step.  
+*  **When the Notepad opens up, you need add the device source and converts image by yourself(see the `Main upload script: push.js` part)**  
    (You can changes the editor by editing the `push_qr.js`)
 *  When closes the notepad(editor), the process will continue and pushes the modified watchface into the simulator!
 *  Example output:
