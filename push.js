@@ -83,5 +83,5 @@ if (require.main === module) {
         process.exit(1);
     }
 
-    run(buildAppJsonPath, zpkPath);
+    run(zpkPath, buildAppJsonPath);
 }
