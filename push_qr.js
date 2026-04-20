@@ -22,6 +22,7 @@ async function main() {
     const tempDir = path.join(__dirname, 'upload');
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir);
 
+    let zpkPath, fileName;
     try {
         ext = path.extname(qrImagePath)
         if (ext === ".zip" || ext === ".zpk") {
@@ -40,24 +41,23 @@ async function main() {
             console.log(`🔗 Got URL: ${targetUrl}`);
 
             // 2. Download file
-            const fileName = path.basename(new URL(targetUrl).pathname) || 'download.zpk';
-            const zpkPath = path.join(tempDir, fileName);
+            fileName = path.basename(new URL(targetUrl).pathname) || 'download.zpk';
+            zpkPath = path.join(tempDir, fileName);
             await downloadFile(targetUrl, zpkPath);
         }
 
+        // Checking file
+        const stats = fs.statSync(zpkPath);
+        if (stats.size < 3072) {
+            const content = fs.readFileSync(zpkPath, 'utf8');
+            throw new Error(`File too small, maybe you downloads the denied message from the server?\n${content}`);
+        }
 
         // 3. Extract the ZPK
         const extractDir = path.join(tempDir, fileName.replace(/\.[^/.]+$/, ""));
         console.log(`📦 Extracted to: ${extractDir}`);
         const zip = new AdmZip(zpkPath);
         zip.extractAllTo(extractDir, true);
-
-        // Checking file
-        const stats = fs.statSync(zpkPath);
-        if (stats.size < 1000) {
-            const content = fs.readFileSync(zpkPath, 'utf8');
-            throw new Error(`File too small, maybe you downloads the denied message from the server?\n${content}`);
-        }
 
         // 4. Extract the device.zip
         const deviceZipPath = path.join(extractDir, 'device.zip');
