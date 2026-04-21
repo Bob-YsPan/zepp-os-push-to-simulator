@@ -3,6 +3,8 @@ Upload the zpk watchface/apps to the simulator by directly calling the function 
 
 It is a way to test the watchface if you do not have a watch and want to use the powerful watchface edit tools like [SashaCX75's editor](https://amazfitwatchfaces.com/forum/viewtopic.php?t=2743)!
 
+> ℹ️ **If you doesn't have Node.js and CLI, you can try the [C# Port of this project](https://github.com/Bob-YsPan/zepp-os-push-to-simulator-cs), and looks this repo's README as the refrence!**
+
 ![capture7](./cap7.png)
 
 ![capture8](./cap8.png)

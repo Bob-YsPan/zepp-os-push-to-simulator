@@ -140,5 +140,3 @@ vite.config.ts.timestamp-*
 
 upload/*
 
-# VS Project
-CS_Implement/*
